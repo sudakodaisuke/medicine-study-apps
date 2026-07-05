@@ -13,7 +13,7 @@ const apps = [
     name: "kokushi",
     appName: "\u56fd\u8a66\u5bfe\u7b56 \u4f5c\u7528\u6a5f\u5e8f\u30de\u30b9\u30bf\u30fc \u30ab\u30e1\u30e9\u6539\u9020\u7248",
     storageKey: "kokusiKaizouLearningStateV1",
-    cacheName: "kokusi-kaizou-v2",
+    cacheName: "kokusi-kaizou-v3",
   },
 ];
 
