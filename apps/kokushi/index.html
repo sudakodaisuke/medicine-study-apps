@@ -3337,18 +3337,79 @@
             gap: 18px;
             margin-bottom: 16px;
         }
+        #screen-home {
+            position: relative;
+            isolation: isolate;
+            padding: clamp(10px, 2vw, 18px);
+            border-radius: 28px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 14% 18%, rgba(255, 214, 102, .55) 0 8px, transparent 9px),
+                radial-gradient(circle at 88% 22%, rgba(248, 113, 113, .42) 0 7px, transparent 8px),
+                radial-gradient(circle at 78% 82%, rgba(96, 165, 250, .42) 0 8px, transparent 9px),
+                linear-gradient(135deg, #fff7dc 0%, #f5e2b8 44%, #f7ead0 100%);
+            box-shadow: inset 0 0 0 1px rgba(146, 64, 14, .12);
+        }
+        #screen-home::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            opacity: .33;
+            background-image:
+                linear-gradient(90deg, rgba(120, 53, 15, .12) 1px, transparent 1px),
+                linear-gradient(rgba(120, 53, 15, .10) 1px, transparent 1px);
+            background-size: 22px 22px;
+        }
+        #screen-home::after {
+            content: "KOKUSHI SELECT";
+            position: absolute;
+            right: -18px;
+            top: 18px;
+            z-index: -1;
+            color: rgba(146, 64, 14, .09);
+            font-size: clamp(34px, 11vw, 86px);
+            font-weight: 1000;
+            letter-spacing: 0;
+            transform: rotate(-7deg);
+            white-space: nowrap;
+        }
         .home-hero {
-            padding: 20px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, #fff7ed 0%, #eef2ff 100%);
-            box-shadow: var(--shadow);
+            position: relative;
+            padding: 18px;
+            border: 3px solid rgba(255, 255, 255, .86);
+            border-radius: 28px;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,.94), rgba(239,246,255,.86)),
+                radial-gradient(circle at 92% 12%, rgba(37, 99, 235, .18), transparent 34%);
+            box-shadow: 0 16px 0 rgba(120, 53, 15, .10), 0 22px 34px rgba(31, 41, 55, .13);
+            transform: rotate(-.7deg);
+        }
+        .home-hero::before,
+        .home-hero::after {
+            content: "";
+            position: absolute;
+            top: 13px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #ef4444;
+            box-shadow: inset 0 2px rgba(255,255,255,.55), 0 3px 5px rgba(15,23,42,.22);
+        }
+        .home-hero::before { left: 18px; }
+        .home-hero::after { right: 18px; background: #2563eb; }
+        .home-hero > div {
+            min-width: 0;
+            padding-left: 2px;
+            transform: rotate(.7deg);
         }
         .home-eyebrow {
             display: inline-flex;
             padding: 4px 10px;
             border-radius: 999px;
-            background: rgba(37, 99, 235, .1);
-            color: #2563eb;
+            background: #1d4ed8;
+            color: #fff;
+            box-shadow: 0 4px 0 rgba(30, 64, 175, .22);
             font-size: 12px;
             font-weight: 900;
             letter-spacing: .05em;
@@ -3364,6 +3425,7 @@
             object-fit: contain;
             filter: drop-shadow(0 16px 22px rgba(31, 41, 55, .18));
             animation: buddyFloat 3.4s ease-in-out infinite;
+            transform: rotate(6deg);
         }
         .home-choice-grid {
             display: grid;
@@ -3373,39 +3435,46 @@
         .home-status-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 10px;
-            margin: 12px 0 14px;
+            gap: 8px;
+            margin: 16px 0 10px;
         }
         .home-status-card {
+            position: relative;
             min-width: 0;
-            padding: 12px;
-            border: 1px solid rgba(209, 213, 219, .9);
-            border-radius: 16px;
-            background: rgba(255, 255, 255, .92);
-            box-shadow: 0 10px 24px rgba(17, 24, 39, .06);
+            padding: 9px 10px;
+            border: 2px solid rgba(255, 255, 255, .88);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .82);
+            box-shadow: 0 7px 0 rgba(120, 53, 15, .09), 0 12px 20px rgba(17, 24, 39, .08);
         }
+        .home-status-card:nth-child(odd) { transform: rotate(-.7deg); }
+        .home-status-card:nth-child(even) { transform: rotate(.7deg); }
         .home-status-card span {
             display: block;
             color: var(--muted);
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 850;
         }
         .home-status-card strong {
             display: block;
-            margin-top: 4px;
+            margin-top: 2px;
             overflow: hidden;
             color: var(--ink);
-            font-size: clamp(18px, 4.2vw, 26px);
+            font-size: clamp(16px, 3.8vw, 24px);
             line-height: 1.1;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
         .home-smart-action {
             width: 100%;
-            min-height: 50px;
-            margin: 0 0 14px;
-            border-radius: 16px;
-            box-shadow: 0 12px 28px rgba(37, 99, 235, .18);
+            min-height: 54px;
+            margin: 0 0 12px;
+            border: 0;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8 55%, #0f766e);
+            box-shadow: 0 8px 0 #153b98, 0 16px 28px rgba(37, 99, 235, .22);
+            font-size: 16px;
+            letter-spacing: 0;
         }
         .home-quick-grid {
             display: grid;
@@ -3414,40 +3483,78 @@
             margin-top: 12px;
         }
         .home-quick-btn {
-            min-height: 42px;
-            border: 1px solid var(--line);
-            border-radius: 12px;
-            background: rgba(255,255,255,.92);
+            min-height: 48px;
+            border: 2px solid rgba(255, 255, 255, .9);
+            border-radius: 15px;
+            background: rgba(255,255,255,.82);
             color: var(--ink);
             font-size: 12px;
             font-weight: 900;
+            box-shadow: 0 6px 0 rgba(120, 53, 15, .09);
         }
         .home-quick-btn:hover { border-color: rgba(37,99,235,.28); background: var(--blue-soft); color: var(--blue); }
         .home-choice-card {
+            position: relative;
             display: grid;
             gap: 10px;
             text-align: left;
-            padding: 18px;
-            border-radius: 22px;
-            border: 1px solid var(--line);
+            min-height: 152px;
+            padding: 18px 18px 16px 84px;
+            border-radius: 24px 34px 24px 34px;
+            border: 3px solid rgba(255, 255, 255, .88);
             background: #fff;
-            box-shadow: var(--shadow-soft);
+            box-shadow: 0 12px 0 rgba(120, 53, 15, .12), 0 22px 30px rgba(17, 24, 39, .11);
             color: var(--ink);
+            overflow: hidden;
         }
-        .home-choice-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+        .home-choice-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background:
+                linear-gradient(120deg, rgba(255,255,255,0) 0 58%, rgba(255,255,255,.45) 58% 70%, transparent 70%),
+                radial-gradient(circle at 88% 16%, rgba(255,255,255,.75) 0 18px, transparent 19px);
+            pointer-events: none;
+        }
+        .home-choice-card > * { position: relative; z-index: 1; }
+        .home-choice-card.pediatric {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe 42%, #ffffff);
+            transform: rotate(-1.3deg);
+        }
+        .home-choice-card.brand-drug {
+            background: linear-gradient(135deg, #ecfdf5, #ccfbf1 42%, #ffffff);
+            transform: rotate(1.1deg);
+        }
+        .home-choice-card:hover { transform: translateY(-2px) rotate(0deg); box-shadow: 0 13px 0 rgba(120, 53, 15, .12), 0 24px 34px rgba(17, 24, 39, .14); }
         .home-choice-card strong { font-size: clamp(18px, 4.8vw, 24px); }
         .home-choice-card em { color: var(--muted); font-style: normal; line-height: 1.55; }
-        .home-choice-card b { color: var(--blue); }
+        .home-choice-card b {
+            display: inline-flex;
+            align-items: center;
+            width: max-content;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.75);
+            color: var(--blue);
+            box-shadow: 0 4px 0 rgba(37, 99, 235, .10);
+        }
         .home-choice-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-8deg);
             display: grid;
             place-items: center;
-            width: 46px;
-            height: 46px;
-            border-radius: 16px;
-            background: var(--blue-soft);
-            color: var(--blue);
-            font-size: 24px;
-            font-weight: 900;
+            width: 54px;
+            height: 72px;
+            border: 3px solid rgba(255,255,255,.84);
+            border-radius: 18px;
+            background: linear-gradient(135deg, #1d4ed8, #60a5fa);
+            color: #fff;
+            font-size: 28px;
+            font-weight: 1000;
+            box-shadow: 0 8px 0 rgba(30, 64, 175, .22);
         }
         .hub-section { display: grid; gap: 14px; }
         .mode-menu-hero {
@@ -3496,10 +3603,22 @@
         .mode-menu-card.wide { grid-column: 1 / -1; }
         .common-menu-grid {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 10px;
         }
         .common-menu-grid .home-quick-btn { min-height: 52px; background: #fff; }
+        .common-menu-grid .home-quick-btn[data-home-screen="buddy"],
+        .common-menu-grid .home-quick-btn[data-home-screen="friends"] {
+            border-color: rgba(15,118,110,.20);
+            background: linear-gradient(135deg, #f0fdfa, #fff7ed);
+            box-shadow: 0 7px 0 rgba(15,118,110,.10);
+        }
+        .common-menu-grid .home-quick-btn[data-home-screen="record"],
+        .common-menu-grid .home-quick-btn[data-home-screen="library"] {
+            border-color: rgba(37,99,235,.22);
+            background: linear-gradient(135deg, #eff6ff, #ecfeff);
+            box-shadow: 0 7px 0 rgba(37,99,235,.12);
+        }
         .outfit-buddy {
             position: relative;
             z-index: 1;
@@ -4353,8 +4472,8 @@
             <section class="screen active" id="screen-home">
                 <div class="home-hero">
                     <div>
-                        <span class="home-eyebrow">Study Hub</span>
-                        <h3>どっちで遊ぶ？</h3>
+                        <span class="home-eyebrow">Mode Select</span>
+                        <h3>今日のステージを選ぶ</h3>
                         <p>国試頻出薬の作用機序と、薬効群↔作用点の対応トレーニングをここから選べます。ポイントと相棒は共通です。</p>
                     </div>
                     <img class="home-buddy" id="homeBuddy" src="assets/buddy/reactions/buddy/idle.png" alt="学習を応援する相棒">
