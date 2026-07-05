@@ -1,37 +1,50 @@
 # Medicine Study Apps
 
-薬剤師・薬学生向け学習アプリを1つのGitHubリポジトリで管理するmonorepoです。
+GitHub上ではmonorepo風に、複数の静的HTMLアプリを1つのリポジトリで管理します。
 
-## Apps
+## 構成
 
-- `apps/pediatric-dose/`
-  - 小児+先発後発 カメラ改造版
-  - 新人薬剤師向け
-  - 小児用量、先発・後発、4択クイズ、弱点復習、学習記録、相棒機能を扱います。
+```text
+medicine-study-apps/
+├─ apps/
+│  ├─ syoni/      小児用量＋先発後発版
+│  └─ kokushi/    国試対策版
+├─ shared/        共通素材・共通ファイル
+├─ scripts/       共通ファイルのコピーや検証用スクリプト
+├─ package.json
+└─ README.md
+```
 
-- `apps/sayoukijo-master/`
-  - 国試対策 作用機序マスター カメラ改造版
-  - 薬学生向け
-  - 薬理の作用機序、薬効群、標的、適応、副作用、国試ポイントを扱います。
+`apps/syoni` と `apps/kokushi` は、それぞれ独立した静的HTMLアプリとして動きます。
 
-## Shared
+- 小児用量版: `apps/syoni`
+- 国試対策版: `apps/kokushi`
 
-- `shared/`
-  - 2つのアプリで共有するアセットや共通素材を置く場所です。
-  - 現時点では各アプリが配信用に必要なファイルを自分の `assets/` に持っています。
+共通のキャラクター画像やゲーム素材などは `shared/` に置きます。ただし、静的HTMLアプリでは `../../shared/...` のように直接参照するとVercel公開時にうまく配信されないことがあるため、デプロイ前に `scripts/copy-shared.js` で各アプリ内へコピーします。
+
+```text
+shared/assets/
+↓ コピー
+apps/syoni/assets/
+apps/kokushi/assets/
+```
+
+## Scripts
+
+```json
+{
+  "prepare:syoni": "node scripts/copy-shared.js syoni",
+  "prepare:kokushi": "node scripts/copy-shared.js kokushi",
+  "prepare:all": "node scripts/copy-shared.js syoni && node scripts/copy-shared.js kokushi",
+  "verify": "node scripts/verify-apps.js"
+}
+```
 
 ## Vercel
 
-GitHubでは同じリポジトリで管理しますが、Vercelではアプリごとに別プロジェクトとして公開します。
+Vercelでは、この1つのGitHubリポジトリから2つのプロジェクトを作ります。
 
-- 小児+先発後発 カメラ改造版
-  - Project: `syoni-camera-kaizou`
-  - Root Directory: `apps/pediatric-dose`
-  - Production URL: `https://syoni-camera-kaizou.vercel.app`
+- 小児用量版: Root Directory `apps/syoni`
+- 国試対策版: Root Directory `apps/kokushi`
 
-- 国試対策 作用機序マスター カメラ改造版
-  - Project: `kokusi-kaizou`
-  - Root Directory: `apps/sayoukijo-master`
-  - Production URL: `https://kokusi-kaizou.vercel.app`
-
-PWAキャッシュ名とlocalStorageキーはアプリごとに分けているため、スマホに追加しても学習記録は混ざりません。
+この構成にすると、キャラクターやミニゲームなどの共通機能を使い回しつつ、小児版と国試版を別々のURL・別々のアプリとして公開できます。共通素材や共通コードはGitHub上でまとめて管理できるため、後から機能を横展開しやすくなります。

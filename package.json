@@ -3,7 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "verify": "node scripts/verify-monorepo.mjs",
-    "verify:sayoukijo": "npm --prefix apps/sayoukijo-master run lint"
+    "prepare:syoni": "node scripts/copy-shared.js syoni",
+    "prepare:kokushi": "node scripts/copy-shared.js kokushi",
+    "prepare:all": "node scripts/copy-shared.js syoni && node scripts/copy-shared.js kokushi",
+    "verify": "node scripts/verify-apps.js"
   }
 }
