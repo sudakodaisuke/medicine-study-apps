@@ -1,0 +1,6 @@
+# Local Netlify folder
+.netlify
+.vercel
+tmp
+node_modules
+cloudflare-pages-upload.zip

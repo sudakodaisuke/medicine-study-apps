@@ -1,0 +1,9 @@
+{
+  "name": "kokusi-kaizou",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node -e \"console.log('Static app: no build step required')\"",
+    "lint": "node scripts/verify-static-app.mjs"
+  }
+}

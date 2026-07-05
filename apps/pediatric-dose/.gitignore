@@ -1,0 +1,15 @@
+# Local Netlify folder
+.netlify
+
+# Local build/deploy artifacts
+tmp/
+cloudflare-pages-upload.zip
+.codex-git/
+
+# Nested working copy/source archive not required by the root static app
+medicine-study-apps/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vercel

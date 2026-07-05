@@ -1,0 +1,9 @@
+{
+  "name": "medicine-study-apps",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "verify": "node scripts/verify-monorepo.mjs",
+    "verify:sayoukijo": "npm --prefix apps/sayoukijo-master run lint"
+  }
+}

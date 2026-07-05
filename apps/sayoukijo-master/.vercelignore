@@ -1,0 +1,5 @@
+.netlify
+.git
+tmp
+cloudflare-pages-upload.zip
+node_modules
