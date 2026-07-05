@@ -1,4 +1,4 @@
-const CACHE_NAME = "kokusi-kaizou-v1";
+const CACHE_NAME = "kokusi-kaizou-v2";
 const APP_SHELL = [
     "./",
     "./index.html",
